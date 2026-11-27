@@ -1,0 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+UPDATE invoices SET id = 1 WHERE id = 6;
+UPDATE invoices SET id = 2 WHERE id = 7;
+ALTER TABLE invoices AUTO_INCREMENT = 3;
+SET FOREIGN_KEY_CHECKS = 1;

@@ -1,0 +1,17 @@
+SET FOREIGN_KEY_CHECKS = 0;
+UPDATE cases SET id = 2 WHERE id = 3;
+UPDATE cases SET id = 3 WHERE id = 4;
+UPDATE case_files SET case_id = 2 WHERE case_id = 3;
+UPDATE case_files SET case_id = 3 WHERE case_id = 4;
+UPDATE case_history SET case_id = 2 WHERE case_id = 3;
+UPDATE case_history SET case_id = 3 WHERE case_id = 4;
+UPDATE case_history_documents SET case_id = 2 WHERE case_id = 3;
+UPDATE case_history_documents SET case_id = 3 WHERE case_id = 4;
+UPDATE case_history_summaries SET case_id = 2 WHERE case_id = 3;
+UPDATE case_history_summaries SET case_id = 3 WHERE case_id = 4;
+UPDATE invoices SET case_id = 2 WHERE case_id = 3;
+UPDATE invoices SET case_id = 3 WHERE case_id = 4;
+UPDATE tasks SET case_id = 2 WHERE case_id = 3;
+UPDATE tasks SET case_id = 3 WHERE case_id = 4;
+ALTER TABLE cases AUTO_INCREMENT = 4;
+SET FOREIGN_KEY_CHECKS = 1;

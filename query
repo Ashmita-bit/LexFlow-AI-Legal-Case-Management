@@ -1,0 +1,257 @@
+-- All SQL Queries for Advocate CaseBook Database
+-- This file contains SELECT, INSERT, UPDATE, DELETE queries for all tables
+-- Use advocate_casebook database
+
+USE advocate_casebook;
+
+-- ===========================================
+-- CASES TABLE QUERIES
+-- ===========================================
+
+-- SELECT all cases
+SELECT * FROM cases;
+
+-- SELECT cases by status
+SELECT * FROM cases WHERE status = 'Open';
+
+-- SELECT cases by client
+SELECT * FROM cases WHERE client = 'John Doe';
+
+-- INSERT a new case
+INSERT INTO cases (title, status, client, nextHearing) VALUES
+('New Case Title', 'Open', 'New Client', '2025-12-01');
+
+-- UPDATE case status
+UPDATE cases SET status = 'Closed' WHERE id = 1;
+
+-- UPDATE next hearing
+UPDATE cases SET nextHearing = '2025-11-15' WHERE id = 2;
+
+-- DELETE a case
+DELETE FROM cases WHERE id = 4;
+
+-- ===========================================
+-- CLIENTS TABLE QUERIES
+-- ===========================================
+
+-- SELECT all clients
+SELECT * FROM clients;
+
+-- SELECT client by email
+SELECT * FROM clients WHERE email = 'john.doe@example.com';
+
+-- SELECT client by username
+SELECT * FROM clients WHERE username = 'client1';
+
+-- INSERT a new client
+INSERT INTO clients (name, email, phone, address, username, password) VALUES
+('New Client', 'new.client@example.com', '+1-555-0105', 'New Address', 'client5', 'Password5');
+
+-- UPDATE client phone
+UPDATE clients SET phone = '+1-555-0106' WHERE id = 1;
+
+-- UPDATE client address
+UPDATE clients SET address = 'Updated Address' WHERE id = 2;
+
+-- DELETE a client
+DELETE FROM clients WHERE id = 4;
+
+-- ===========================================
+-- INVOICES TABLE QUERIES
+-- ===========================================
+
+-- SELECT all invoices
+SELECT * FROM invoices;
+
+-- SELECT invoices by status
+SELECT * FROM invoices WHERE status = 'Pending';
+
+-- SELECT invoices by client
+SELECT * FROM invoices WHERE client = 'John Doe';
+
+-- INSERT a new invoice
+INSERT INTO invoices (client, description, amount, status, dueDate) VALUES
+('New Client', 'New Service', 1000.00, 'Pending', '2025-11-01');
+
+-- UPDATE invoice status
+UPDATE invoices SET status = 'Paid' WHERE id = 1;
+
+-- UPDATE invoice amount
+UPDATE invoices SET amount = 800.00 WHERE id = 2;
+
+-- DELETE an invoice
+DELETE FROM invoices WHERE id = 4;
+
+-- ===========================================
+-- ACCOUNTS TABLE QUERIES
+-- ===========================================
+
+-- SELECT all accounts
+SELECT * FROM accounts;
+
+-- SELECT accounts by type
+SELECT * FROM accounts WHERE type = 'Trust';
+
+-- SELECT account by name
+SELECT * FROM accounts WHERE name = 'Trust Account';
+
+-- INSERT a new account
+INSERT INTO accounts (name, type, balance, lastUpdated) VALUES
+('New Account', 'Savings', 10000.00, '2025-10-05');
+
+-- UPDATE account balance
+UPDATE accounts SET balance = 16000.00 WHERE id = 1;
+
+-- UPDATE last updated date
+UPDATE accounts SET lastUpdated = '2025-10-05' WHERE id = 2;
+
+-- DELETE an account
+DELETE FROM accounts WHERE id = 3;
+
+-- ===========================================
+-- MESSAGES TABLE QUERIES
+-- ===========================================
+
+-- SELECT all messages
+SELECT * FROM messages;
+
+-- SELECT messages by sender
+SELECT * FROM messages WHERE sender = 'John Doe';
+
+-- SELECT messages by date
+SELECT * FROM messages WHERE date = '2025-10-01';
+
+-- INSERT a new message
+INSERT INTO messages (sender, subject, preview, date) VALUES
+('New Sender', 'New Subject', 'New Preview', '2025-10-05');
+
+-- UPDATE message subject
+UPDATE messages SET subject = 'Updated Subject' WHERE id = 1;
+
+-- UPDATE message preview
+UPDATE messages SET preview = 'Updated Preview' WHERE id = 2;
+
+-- DELETE a message
+DELETE FROM messages WHERE id = 4;
+
+-- ===========================================
+-- ADVOCATES TABLE QUERIES
+-- ===========================================
+
+-- SELECT all advocates
+SELECT * FROM advocates;
+
+-- SELECT advocate by username
+SELECT * FROM advocates WHERE username = 'advocate1';
+
+-- SELECT advocate by role
+SELECT * FROM advocates WHERE role = 'advocate';
+
+-- INSERT a new advocate
+INSERT INTO advocates (username, password, role, name, email, phone, address) VALUES
+('advocate3', 'Password3', 'advocate', 'Advocate Three', 'advocate3@example.com', '+1-555-1003', '300 Advocate Blvd, City, State');
+
+-- UPDATE advocate email
+UPDATE advocates SET email = 'updated@example.com' WHERE id = 1;
+
+-- UPDATE advocate phone
+UPDATE advocates SET phone = '+1-555-1004' WHERE id = 2;
+
+-- DELETE an advocate
+DELETE FROM advocates WHERE id = 2;
+
+-- ===========================================
+-- STAFF TABLE QUERIES
+-- ===========================================
+
+-- SELECT all staff
+SELECT * FROM staff;
+
+-- SELECT staff by advocate_id
+SELECT * FROM staff WHERE advocate_id = 1;
+
+-- SELECT staff by username
+SELECT * FROM staff WHERE username = 'staff1';
+
+-- INSERT a new staff member
+INSERT INTO staff (advocate_id, name, email, phone, address, username, password, profile) VALUES
+(1, 'New Staff', 'newstaff@example.com', '+1-555-2004', 'New Staff Address', 'staff4', 'Password4', 'New profile');
+
+-- UPDATE staff email
+UPDATE staff SET email = 'updatedstaff@example.com' WHERE id = 1;
+
+-- UPDATE staff profile
+UPDATE staff SET profile = 'Updated profile' WHERE id = 2;
+
+-- DELETE a staff member
+DELETE FROM staff WHERE id = 3;
+
+-- ===========================================
+-- TASKS TABLE QUERIES
+-- ===========================================
+
+-- SELECT all tasks
+SELECT * FROM tasks;
+
+-- SELECT tasks by status
+SELECT * FROM tasks WHERE status = 'Pending';
+
+-- SELECT tasks by assigned_to
+SELECT * FROM tasks WHERE assigned_to = 1;
+
+-- SELECT tasks by client_id
+SELECT * FROM tasks WHERE client_id = 1;
+
+-- INSERT a new task
+INSERT INTO tasks (title, description, status, assigned_to, assigned_by, client_id, case_id, start_date, end_date) VALUES
+('New Task', 'New task description', 'Pending', 1, 1, 1, 1, '2025-10-20', '2025-10-25');
+
+-- UPDATE task status
+UPDATE tasks SET status = 'Completed' WHERE id = 1;
+
+-- UPDATE task end_date
+UPDATE tasks SET end_date = '2025-10-22' WHERE id = 2;
+
+-- DELETE a task
+DELETE FROM tasks WHERE id = 3;
+
+-- DELETE all tasks (used to clear dummy data)
+DELETE FROM tasks;
+
+-- DELETE all staff (used to clear dummy data)
+DELETE FROM staff;
+
+-- ===========================================
+-- ADDITIONAL USEFUL QUERIES
+-- ===========================================
+
+-- Get all cases with client details
+SELECT c.id, c.title, c.status, c.nextHearing, cl.name AS client_name, cl.email AS client_email
+FROM cases c
+JOIN clients cl ON c.client = cl.name;
+
+-- Get all tasks with assigned staff and advocate details
+SELECT t.id, t.title, t.status, s.name AS staff_name, a.name AS advocate_name, cl.name AS client_name
+FROM tasks t
+JOIN staff s ON t.assigned_to = s.id
+JOIN advocates a ON t.assigned_by = a.id
+LEFT JOIN clients cl ON t.client_id = cl.id;
+
+-- Get total invoice amount by client
+SELECT client, SUM(amount) AS total_amount
+FROM invoices
+GROUP BY client;
+
+-- Get count of tasks by status
+SELECT status, COUNT(*) AS task_count
+FROM tasks
+GROUP BY status;
+
+-- Get messages from last 7 days
+SELECT * FROM messages
+WHERE date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+
+-- Get staff under a specific advocate
+SELECT s.name, s.email, s.role
+FROM staff s
+WHERE s.advocate_id = 1;

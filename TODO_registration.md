@@ -1,0 +1,4 @@
+- [x] Update backend/init.sql: Add 'username' and 'password' columns to 'clients' table and insert dummy usernames/passwords for existing clients
+- [x] Update backend/Server.js: Remove hardcoded users array, add POST /register/advocate and /register/client endpoints, update login endpoints to query database, add unique username validation
+- [x] Create frontend/src/components/RegisterForm.js: Build registration form with role selection, fields for advocates (username, password, name, email, phone, address) and clients (username, password, name, email, phone, address), form validation
+- [x] Update frontend/src/App.js: Add route for "/register" to render RegisterForm component

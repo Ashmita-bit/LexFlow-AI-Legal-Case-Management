@@ -1,0 +1,5 @@
+- [x] Add client-side validation to LoginForm.js (username: min 3 chars, password: min 6 chars, alphanumeric)
+- [x] Add error display in LoginForm.js with attractive styling (red text, animations)
+- [x] Improve overall styling of LoginForm.js (better colors, shadows, hover effects)
+- [x] Add server-side validation in Server.js for login endpoints (check input lengths, formats)
+- [x] Test login with valid and invalid inputs for both advocate and client (updated passwords to meet validation: advocate1/Password1, advocate2/Password2, client1/Password1, client2/Password2)
